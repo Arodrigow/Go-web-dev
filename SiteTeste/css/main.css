@@ -1,0 +1,171 @@
+#atf{
+  height: 100vh;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+html{
+  font-size: 1.2vw;
+}
+
+/* NAVIGATION BAR CONFIG */
+#h-nav{
+  /* Size */
+  width: 100%;
+  height: 2rem;
+
+  /* Structure */
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+
+  /* Style */
+  background-color: rgb(42, 86, 110);
+  color: rgb(218, 230, 237);
+}
+
+#h-logo{
+  /* Size */
+  width: 12rem;
+  height: inherit;
+
+  /* Structure */
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+}
+#h-links{
+  /* Size */
+  width: 20rem;
+  height: inherit;
+
+  /* Structure */
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  align-items: center;
+
+  /* Style */
+}
+
+.nav-links{
+  /* Size */
+  width: 20%;
+  height: 90%;
+  max-height: 100%
+  padding: 0.2rem;
+
+  /* Structure */
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+
+  border: 1.5px solid transparent;
+}
+
+.nav-links:hover{
+  border: 1.5px solid rgba(218, 230, 237, 0.2);
+  border-radius: 8px;
+
+  color: rgb(198, 210, 217);
+  background-color: rgba(240, 243, 245, 0.3);
+}
+
+/* MAIN CONTENT OF ATF CONFIG */
+
+.h-main{
+  /* Size */
+  height: 100%;
+
+  /* Structure */
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+
+  /* Style */
+  background-color: rgb(209, 217, 224);
+}
+
+.h-main h1{
+  color: red;
+
+  font-size: 3rem;
+  text-decoration: underline;
+  font-weight: bolder;
+
+  margin-bottom: 2rem;
+}
+
+.h-main h2{
+  color: crimson;
+
+  font-size: 1.5rem;
+  font-weight:200;
+
+  margin-bottom: 2rem;
+}
+
+/* REGISTER PAGE CONTENT CONFIG */
+
+#register-main{
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: rgb(209, 217, 224);
+}
+
+.reg-form{
+  height: 50%;
+
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+
+.reg-form label{
+  line-height: 1.5rem;
+  color: rgb(42, 86, 110);
+}
+.reg-form input{
+  width: 30rem;
+  padding: 3px;
+  margin-bottom: 1.2rem;
+
+  background-color: white;
+  border: 2px solid rgb(38, 152, 252);
+  border-radius: 5px;
+}
+
+#btn-submit, #btn-reset{
+  width: 10rem;
+  color: white;
+  padding: 7px;
+
+}
+
+#btn-submit{
+  background-color: rgb(38, 152, 252);
+}
+#btn-submit:hover{
+  background-color: rgb(18, 122, 222);
+  cursor: pointer;
+}
+
+#btn-reset{
+  background-color: rgb(64, 245, 160);
+  border: 2px solid rgb(64, 245, 160);
+}
+#btn-reset:hover{
+  background-color: rgb(45, 166, 109);
+  cursor: pointer;
+}
+
+/* LOGIN PAGE CONTENT CONFIG */
