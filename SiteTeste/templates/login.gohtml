@@ -13,9 +13,12 @@
       <a href="\" id="h-logo">RodrigoW's test site</a>
       <nav id="h-links">
         <a href="\" class="nav-links">Home</a>
+        {{if .}}
+         <a href="\logout" class="nav-links">Logout</a>
+        {{else}}
         <a href="\register" class="nav-links">Register</a>
         <a href="\login" class="nav-links">Login</a>
-        <a href="#" class="nav-links">Logout</a>
+        {{end}}
       </nav>
     </div>
   <main id="register-main">

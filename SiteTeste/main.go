@@ -44,6 +44,7 @@ func main() {
 	http.Handle("/favicon.ico", http.NotFoundHandler())
 	http.HandleFunc("/register", register)
 	http.HandleFunc("/login", login)
+	http.HandleFunc("/logout", logout)
 
 	http.ListenAndServe(":8080", nil)
 
@@ -57,6 +58,26 @@ func alreadyLoggedIn(req *http.Request) bool {
 
 	return getUserFromCookie(c.Value)
 
+}
+
+func logout(w http.ResponseWriter, req *http.Request) {
+	if !alreadyLoggedIn(req) {
+		http.Redirect(w, req, "/", http.StatusSeeOther)
+		return
+	}
+
+	c, _ := req.Cookie("session")
+
+	deleteSession(c.Value)
+
+	c = &http.Cookie{
+		Name:   "session",
+		Value:  "",
+		MaxAge: -1,
+	}
+	http.SetCookie(w, c)
+
+	http.Redirect(w, req, "/login", http.StatusSeeOther)
 }
 
 func handleError(err error) {

@@ -8,6 +8,11 @@ import (
 
 func login(w http.ResponseWriter, req *http.Request) {
 
+	if alreadyLoggedIn(req) {
+		http.Redirect(w, req, "/", http.StatusSeeOther)
+		return
+	}
+
 	if req.Method == http.MethodPost {
 		un := req.FormValue("id")
 		p := req.FormValue("password")

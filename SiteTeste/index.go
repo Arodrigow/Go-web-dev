@@ -1,15 +1,31 @@
 package main
 
-import "net/http"
+import (
+	"fmt"
+	"net/http"
+)
 
 func index(w http.ResponseWriter, req *http.Request) {
+	users := getAllUsers()
 	if alreadyLoggedIn(req) {
-		c, _ := req.Cookie("session")
-		un := getIDFromValue(c.Value)
-		us := getUser(un)
-
-		tpl.ExecuteTemplate(w, "index.gohtml", us)
+		data := struct {
+			us       []user
+			loggedIn bool
+		}{
+			us:       users,
+			loggedIn: true,
+		}
+		fmt.Println(data.loggedIn)
+		tpl.ExecuteTemplate(w, "index.gohtml", data)
 		return
 	}
-	tpl.ExecuteTemplate(w, "index.gohtml", nil)
+	data := struct {
+		us       []user
+		loggedIn bool
+	}{
+		us:       users,
+		loggedIn: false,
+	}
+	tpl.ExecuteTemplate(w, "index.gohtml", data)
+
 }

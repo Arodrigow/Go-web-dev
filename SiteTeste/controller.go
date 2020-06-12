@@ -50,6 +50,24 @@ func getUser(userid string) user {
 	return user
 }
 
+func getAllUsers() []user {
+	var u user
+	var users []user
+	var iddb int
+
+	query := fmt.Sprintf(`SELECT * FROM users;`)
+	rows, err := db.Query(query)
+	handleError(err)
+	defer rows.Close()
+
+	for rows.Next() {
+		err = rows.Scan(&iddb, &u.FName, &u.LName, &u.ID, &u.Password)
+		handleError(err)
+		users = append(users, u)
+	}
+	return users
+}
+
 func tryLogIn(un string, password string) bool {
 
 	var p string
@@ -73,6 +91,16 @@ func tryLogIn(un string, password string) bool {
 func newSession(un string, cookieValue string) {
 
 	query := fmt.Sprintf(`INSERT INTO dbsession (userid, uuid) VALUES ("%s", "%s");`, un, cookieValue)
+	stmt, err := db.Prepare(query)
+	handleError(err)
+	defer stmt.Close()
+
+	_, err = stmt.Exec()
+	handleError(err)
+}
+
+func deleteSession(cookieValue string) {
+	query := fmt.Sprintf(`DELETE FROM dbsession WHERE uuid="%s";`, cookieValue)
 	stmt, err := db.Prepare(query)
 	handleError(err)
 	defer stmt.Close()
