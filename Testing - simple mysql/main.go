@@ -25,7 +25,8 @@ func main() {
 
 	//SELECTING A SINGLE ROW
 	var usuario user
-	query := fmt.Sprintf(`SELECT * FROM users WHERE id="Euz";`)
+	//SELECT * busca a coluna do ID da DB, deve ser levado em conta
+	query := fmt.Sprintf(`SELECT * FROM users WHERE userid="Euz";`)
 	err = db.QueryRow(query).Scan(&usuario.FName, &usuario.LName, &usuario.ID, &usuario.Password)
 	//RETURNS A ERROR IF ID IS NON-EXISTENT, AND MAIN CONTINUES TO RUN
 	testeError(err)
@@ -51,7 +52,7 @@ func main() {
 	var column string
 	var columns []string
 
-	query = fmt.Sprintf(`SELECT id FROM users;`)
+	query = fmt.Sprintf(`SELECT userid FROM users;`)
 	rows, err = db.Query(query)
 	testeError(err)
 	defer rows.Close()
@@ -65,7 +66,7 @@ func main() {
 	fmt.Println("Column query: ", columns)
 
 	//INSERTING VALUES TO TABLE USERS
-	stmt, err := db.Prepare(`INSERT INTO users (fName, lName, id, password) VALUES("Rodrigo", "Alves", "R", "123456");`)
+	stmt, err := db.Prepare(`INSERT INTO users (fName, lName, userid, password) VALUES("Rodrigo", "Alves", "R", "123456");`)
 	testeError(err)
 	defer stmt.Close()
 
@@ -73,7 +74,7 @@ func main() {
 	testeError(err)
 
 	//DELETING VALUES TO TABLE USERS
-	stmt, err = db.Prepare(`UPDATE users SET id="Gopher" WHERE id="R"`)
+	stmt, err = db.Prepare(`UPDATE users SET id="Gopher" WHERE userid="R"`)
 	testeError(err)
 	defer stmt.Close()
 
@@ -81,7 +82,7 @@ func main() {
 	testeError(err)
 
 	//DELETING VALUES TO TABLE USERS
-	stmt, err = db.Prepare(`DELETE FROM users WHERE id="Gopher";`)
+	stmt, err = db.Prepare(`DELETE FROM users WHERE userid="Gopher";`)
 	testeError(err)
 	defer stmt.Close()
 
