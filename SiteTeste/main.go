@@ -22,7 +22,7 @@ type user struct {
 	FName    string
 	LName    string
 	ID       string
-	Password []byte
+	Password string
 }
 
 func main() {
@@ -49,19 +49,18 @@ func main() {
 
 }
 
-func index(w http.ResponseWriter, req *http.Request) {
-	err = tpl.ExecuteTemplate(w, "index.gohtml", nil)
-	handleError(w, err)
-}
-
-func login(w http.ResponseWriter, req *http.Request) {
-	err = tpl.ExecuteTemplate(w, "login.gohtml", nil)
-	handleError(w, err)
-}
-
-func handleError(w http.ResponseWriter, err error) {
+func alreadyLoggedIn(req *http.Request) bool {
+	c, err := req.Cookie("session")
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		log.Fatalln(err)
+		return false
+	}
+
+	return getUserFromCookie(c.Value)
+
+}
+
+func handleError(err error) {
+	if err != nil {
+		log.Panic(err)
 	}
 }
