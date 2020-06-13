@@ -9,22 +9,22 @@ func index(w http.ResponseWriter, req *http.Request) {
 	users := getAllUsers()
 	if alreadyLoggedIn(req) {
 		data := struct {
-			us       []user
-			loggedIn bool
+			Us       []user
+			LoggedIn bool
 		}{
-			us:       users,
-			loggedIn: true,
+			Us:       users,
+			LoggedIn: true,
 		}
-		fmt.Println(data.loggedIn)
+		fmt.Println(data.LoggedIn)
 		tpl.ExecuteTemplate(w, "index.gohtml", data)
 		return
 	}
 	data := struct {
-		us       []user
-		loggedIn bool
+		Us       []user
+		LoggedIn bool
 	}{
-		us:       users,
-		loggedIn: false,
+		Us:       users,
+		LoggedIn: false,
 	}
 	tpl.ExecuteTemplate(w, "index.gohtml", data)
 

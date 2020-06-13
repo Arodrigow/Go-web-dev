@@ -14,7 +14,7 @@
       <a href="\" id="h-logo">RodrigoW's test site</a>
       <nav id="h-links">
         <a href="\" class="nav-links">Home</a>
-        {{if .loggedIn}}
+        {{if .LoggedIn}}
          <a href="\logout" class="nav-links">Logout</a>
         {{else}}
          <a href="\register" class="nav-links">Register</a>
@@ -28,7 +28,7 @@
     </div>
   </header>
   <main>
-    <h3>Testing mySQL</h3>
+  <h3>Testing mySQL</h3>
     <table>
       <thead>
         <th>
@@ -45,7 +45,7 @@
         </th>
       </thead>
       <tbody>
-      {{range .us}}
+      {{range .Us}}
         <tr>
           <td>{{.FName}}</td>
           <td>{{.LName}}</td>
