@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"net/http"
 )
 
@@ -15,7 +14,6 @@ func index(w http.ResponseWriter, req *http.Request) {
 			Us:       users,
 			LoggedIn: true,
 		}
-		fmt.Println(data.LoggedIn)
 		tpl.ExecuteTemplate(w, "index.gohtml", data)
 		return
 	}
